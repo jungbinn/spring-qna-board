@@ -3,7 +3,7 @@ package com.line2019.qna.web;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "QnaUsers")
+@Table(name = "USERS")
 public class User {
 
     @Id
