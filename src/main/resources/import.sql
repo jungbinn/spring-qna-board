@@ -1,0 +1,4 @@
+INSERT INTO USERS(UID, EMAIL, NAME, PASSWORD, IS_ADMIN) VALUES (1, 'email1@email.com', 'name1', 'pw1', 'TRUE');
+INSERT INTO USERS(UID, EMAIL, NAME, PASSWORD, IS_ADMIN) VALUES(2, 'email2@email.com', 'name2', 'pw2', 'FALSE');
+INSERT INTO USERS(UID, EMAIL, NAME, PASSWORD, IS_ADMIN) VALUES(3, 'email3@email.com', 'name3', 'pw3', 'FALSE');
+INSERT INTO USERS(UID, EMAIL, NAME, PASSWORD, IS_ADMIN) VALUES(4, 'email4@email.com', 'name4', 'pw4', 'FALSE');
