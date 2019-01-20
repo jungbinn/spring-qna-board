@@ -3,10 +3,7 @@ package com.line2019.qna.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -56,5 +53,29 @@ public class UserController {
     public String list(Model model) {
         model.addAttribute("users", userRepository.findAll());
         return "users/list";
+    }
+
+    @GetMapping("{uid}/updateForm")
+    public String updateForm(@PathVariable Long uid, Model model, HttpSession session) {
+        if (!HttpSessionUtils.isUserLogin(session)) {
+            return "redirect:/users/loginForm";
+        }
+
+        User user = userRepository.findById(uid).get();
+        model.addAttribute(user);
+        return "users/update";
+    }
+
+    @PutMapping("{uid}/update")
+    public String update(@PathVariable Long uid, String email, String name, String password, HttpSession session) {
+        if (!HttpSessionUtils.isUserLogin(session)) {
+            return "redirect:/users/loginForm";
+        }
+
+        User user = userRepository.findById(uid).get();
+        user.update(email, name, password);
+        userRepository.save(user);
+        session.setAttribute(HttpSessionUtils.SESSION_KEY, user);
+        return "redirect:/users";
     }
 }
